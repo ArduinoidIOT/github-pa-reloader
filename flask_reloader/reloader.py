@@ -8,7 +8,7 @@ import requests
 username = 'gitreloader'  # Your pythonanywhere username
 domain_name = 'gitreloader.pythonanywhere.com'  # Your domain
 app = Flask(__name__)
-files_to_reload = ["flask_reloader/reloader.py"]
+files_to_reload = ["flask_reloader/reloader.py", 'testfile']
 git_secret = environ.get('GITSECRET')
 ref = 'refs/heads/master'  # Your branch
 repo_id = 266953712  # Your repo id
