@@ -29,8 +29,9 @@ def reloader():
             if (not sig) or sig.strip().split('=')[1] == hashed.hexdigest():
                 return jsonify(status=400, reason='Invalid signature'), 400
         with open('latest_delivery', 'w+') as latest_delivery:
-            if latest_delivery.read() == request.headers.get('X-GitHub-DeEventlivery'):
+            if latest_delivery.read() == request.headers.get('X-GitHub-Delivery'):
                 return jsonify(status=400, reason='Replayed Request')
+            latest_delivery.write(request.headers.get('X-GitHub-Delivery'))
         if data['ref'] == ref:
             system("git pull")
         data = data['head_commit']
