@@ -1,5 +1,5 @@
 from flask import Flask, request
-from os import environ
+from os import environ, system
 from json import loads
 from hashlib import sha1
 import hmac
@@ -8,6 +8,7 @@ app = Flask(__name__)
 files_to_reload = []
 git_secret = environ.get('GITSECRET')
 ref = 'refs/heads/master'  # Your branch
+repo_id = 266953712  # Your repo id
 
 
 @app.route('/')
@@ -15,7 +16,7 @@ def empty():
     return 'Hello'
 
 
-@app.route('/git_webhook')
+@app.route('/git_webhook', methods=['POST'])
 def reloader():
     if request.headers.get('X-Github-Event') == 'push':
         data = loads(request.data)
@@ -24,7 +25,8 @@ def reloader():
             sig = request.headers.get('X-Hub-Signature')
             if (not sig) or sig.strip().split('=')[1] == hashed.hexdigest():
                 return '{}', 400
-
+        if data['ref'] == ref:
+            system("git pull")
     return '{}'
 
 
