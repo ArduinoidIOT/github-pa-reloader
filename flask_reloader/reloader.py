@@ -27,7 +27,7 @@ def reloader():
             hashed = hmac.new(git_secret.encode(), request.data, sha1)
             sig = request.headers.get('X-Hub-Signature')
             if (not sig) or sig.strip().split('=')[1] != hashed.hexdigest():
-                return jsonify(status=400, reason='Invalid signature'), 400
+                return jsonify(status=400, reason='Invalid signature')
         with open('latest_delivery', 'w+') as latest_delivery:
             if latest_delivery.read() == request.headers.get('X-GitHub-Delivery'):
                 return jsonify(status=400, reason='Replayed Request')
