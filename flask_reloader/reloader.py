@@ -16,7 +16,7 @@ repo_id = 266953712  # Your repo id
 
 @app.route('/')
 def empty():
-    return 'YEETER'
+    return 'SUP'
 
 
 @app.route('/git_webhook', methods=['POST'])
@@ -38,7 +38,7 @@ def reloader():
         for i in data['removed'] + data['modified']:
             if i in files_to_reload:
                 response = requests.post(
-                    'https://www.pythonanywhere.com//api/v0/user/{username}/webapps/{domain_name}/reload/'.format(
+                    'https://www.pythonanywhere.com/api/v0/user/{username}/webapps/{domain_name}/reload/'.format(
                         username=username,
                         domain_name=domain_name
                     ),
