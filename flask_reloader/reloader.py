@@ -44,7 +44,7 @@ def reloader():
                     ),
                     headers={'Authorization': 'Token {token}'.format(token=environ.get("API_TOKEN"))}
                 )
-    return jsonify(status=200)
+    return jsonify(success=True)
 
 
 if __name__ == '__main__':
