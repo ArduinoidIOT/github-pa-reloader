@@ -16,7 +16,7 @@ repo_id = 266953712  # Your repo id
 
 @app.route('/')
 def empty():
-    return 'SUP'
+    return 'YEAH'
 
 
 @app.route('/git_webhook', methods=['POST'])
