@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from os import environ, system
 from json import loads
 from hashlib import sha1
